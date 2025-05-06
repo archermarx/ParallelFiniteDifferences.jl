@@ -1,4 +1,4 @@
-# ParallelFiniteDifferences
+# ParallelFiniteDifferences.jl
 
 [![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://archermarks.github.io/ParallelFiniteDifferences.jl/stable/)
 [![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://archermarks.github.io/ParallelFiniteDifferences.jl/dev/)
