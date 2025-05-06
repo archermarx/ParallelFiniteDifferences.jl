@@ -1,6 +1,5 @@
 using ParallelFiniteDifferences
 using Test
+using TestItemRunner
 
-@testset "ParallelFiniteDifferences.jl" begin
-    # Write your tests here.
-end
+@run_package_tests
