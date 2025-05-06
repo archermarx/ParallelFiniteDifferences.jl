@@ -1,0 +1,13 @@
+name = "ParallelFiniteDifferences"
+uuid = "f90564c1-6d8d-4201-a5a2-4369fda1ed99"
+authors = ["Thomas Marks <marksta@umich.edu> and contributors"]
+version = "1.0.0-DEV"
+
+[compat]
+julia = "1.10"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
