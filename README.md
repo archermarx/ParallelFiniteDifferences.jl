@@ -1,7 +1,7 @@
 # ParallelFiniteDifferences.jl
 
 [![CI](https://github.com/archermarx/ParallelFiniteDifferences.jl/actions/workflows/CI.yml/badge.svg)](https://github.com/archermarx/ParallelFiniteDifferences.jl/actions/workflows/CI.yml)
-[![Coverage](https://codecov.io/gh/archermarks/ParallelFiniteDifferences.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/archermarks/ParallelFiniteDifferences.jl)
+[![Coverage](https://codecov.io/gh/archermarks/ParallelFiniteDifferences.jl/branch/main/graph/badge.svg)](https://app.codecov.io/gh/archermarx/ParallelFiniteDifferences.jl)
 
 
 Simple package for computing finite differences in parallel for relatively expensive black-box functions.
