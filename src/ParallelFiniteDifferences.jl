@@ -6,15 +6,15 @@ function _get_step_size(x, rel)
     return rel * (1 + abs(x))
 end
 
-function eval_with_gradient!(g::Vector{T}, f, x::Vector{T})::Tuple{T, Vector{T}} where {T<:Real}
+function eval_with_gradient!(g::Vector{T}, f, x::Vector{T})::Tuple{T, Vector{T}} where {T <: Real}
     # Check that vectors have correct shape
-    @assert(length(x) == length(g),  "Evaluation point and gradient vector must have the same length")
+    @assert(length(x) == length(g), "Evaluation point and gradient vector must have the same length")
 
     relative_step_size = sqrt(eps(T))
     f0 = zero(T)
 
-    Threads.@threads for i in 1:length(g)+1
-        if i == length(g)+1
+    Threads.@threads for i in 1:(length(g) + 1)
+        if i == length(g) + 1
             # Compute the function value at the current point
             f0 = f(x)
         else
@@ -36,24 +36,24 @@ function eval_with_gradient!(g::Vector{T}, f, x::Vector{T})::Tuple{T, Vector{T}}
     return f0, g
 end
 
-@inline function gradient!(g::Vector{T}, f, x::Vector{T})::Vector{T} where {T<:Real}
+@inline function gradient!(g::Vector{T}, f, x::Vector{T})::Vector{T} where {T <: Real}
     _, g = eval_with_gradient!(g, f, x)
     return g
 end
 
-@inline function eval_with_gradient(f, x::Vector{T})::Tuple{T, Vector{T}} where {T<:Real}
+@inline function eval_with_gradient(f, x::Vector{T})::Tuple{T, Vector{T}} where {T <: Real}
     return eval_with_gradient!(zeros(T, length(x)), f, x)
 end
 
-@inline function gradient(f, x::Vector{T})::Vector{T} where {T<:Real}
+@inline function gradient(f, x::Vector{T})::Vector{T} where {T <: Real}
     return gradient!(zeros(T, length(x)), f, x)
 end
 
 @testitem "Tests" begin
     function rosenbrock_gradient(x)
         return [
-            2*(x[1]-1) - 4*100*(x[2]-x[1]^2)*x[1],
-            2 * 100 * (x[2] - x[1]^2)
+            2 * (x[1] - 1) - 4 * 100 * (x[2] - x[1]^2) * x[1],
+            2 * 100 * (x[2] - x[1]^2),
         ]
     end
 
@@ -64,11 +64,10 @@ end
         x_old = copy(x)
         f, g = ParallelFiniteDifferences.eval_with_gradient(rosenbrock, x)
         expected_g = rosenbrock_gradient(x)
-        @test isapprox(g, expected_g, rtol = 1e-4)
+        @test isapprox(g, expected_g, rtol = 1.0e-4)
         @test isapprox(f, rosenbrock(x))
         @test x == x_old
     end
 end
 
 end
-
