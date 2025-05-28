@@ -14,16 +14,15 @@ function eval_with_gradient!(g::Vector{T}, f, x::Vector{T})::Tuple{T, Vector{T}}
     f0 = zero(T)
 
     Threads.@threads for i in 1:(length(g) + 1)
+        _x = copy(x)
         if i == length(g) + 1
             # Compute the function value at the current point
-            f0 = f(x)
+            f0 = f(_x)
         else
             # Compute function values at perturbed points
-            old_x = x[i]
-            step = _get_step_size(x[i], relative_step_size)
-            x[i] += step
-            g[i] = f(x)
-            x[i] = old_x
+            step = _get_step_size(_x[i], relative_step_size)
+            _x[i] += step
+            g[i] = f(_x)
         end
     end
 
